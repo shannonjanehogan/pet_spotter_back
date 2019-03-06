@@ -9,28 +9,70 @@ pool.on('connect', () => {
   console.log('connected to the db');
 });
 
+// Returns result of reading the sql file to a string
+const readFileHelper = (fileName) => {
+  return fs.readFileSync(`./database/migrations/${fileName}.sql`).toString();
+}
+
+// Returns a list of all the tables to create, in a specific order so that
+// there are no foreign key constraint errors
+const createScriptList = () = {
+  const createAddressPostalCodeText = readFileHelper(create_address_postal_code);
+  const createAddress = readFileHelper(create_address);
+  const createAnimalPickup = readFileHelper(create_animal_pickup);
+  const createAnimal = readFileHelper(create_animal);
+  const createApplicationApproved = readFileHelper(create_application_approved);
+  const createApplication = readFileHelper(create_application);
+  const createBreedText = readFileHelper(create_breed);
+  const createClientText = readFileHelper(create_client);
+  const createDonationText = readFileHelper(create_donation);
+  const createDonorText = readFileHelper(create_donor);
+  const createNameToCredit = readFileHelper(create_name_to_credit);
+  const createPotentialOwner = readFileHelper(create_potential_owner);
+  const createReview = readFileHelper(create_review);
+  const createShelter = readFileHelper(create_shelter);
+
+  return [
+    createBreedText,
+    createAddressPostalCodeText,
+    createAddress,
+    createAnimalPickup,
+    createShelter,
+    createClient,
+    createDonorText,
+    createDonationText,
+    createNameToCredit,
+    createPotentialOwner,
+    createReview,
+    createAnimal,
+    createApplicationApproved,
+    createApplication
+  ];
+}
+
 /**
  * Create Tables
  */
 const createTables = () => {
-  const queryText = fs.readFileSync('./database/migrations/create_users_table.sql').toString();
-
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
+  const scriptList = createScriptList();
+  for (script in scriptList) {
+    pool.query(script)
+      .then((res) => {
+        console.log(res);
+        pool.end();
+      })
+      .catch((err) => {
+        console.log(err);
+        pool.end();
+      });
+  }
 }
 
 /**
  * Drop Tables
  */
 const dropTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS reflections';
+  const queryText = 'DROP TABLE IF EXISTS Animal';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
