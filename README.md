@@ -2,6 +2,16 @@
 
 ##### Made for University of British Columbia's Computer Science 304 Class (Relational Databases)
 
+### Working with Postgres
+
+Typing `psql` on the command line should let you access a postgres instance
+
+Then typing `CREATE DATABASE petspotter;` will create a database called petspotter
+
+In the future, typing `psql petspotter` will open that database instance
+
+This was a helpful [resource](https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb) (mac only)
+
 #### Steps to run the application
 
 `npm install`
@@ -22,7 +32,7 @@ Run `node ./database/index dropTables`
 
 Should be done under `./database/seeds`
 
-_SCRIPT TO CREATE SEEDS IN PROGRESS, WILL EVENTUALLY LOOK LIKE: _**
+*SCRIPT TO CREATE SEEDS IN PROGRESS, WILL EVENTUALLY LOOK LIKE:*
 
 Run `node ./database/index createSeeds`
 
