@@ -1,8 +1,9 @@
 const { Pool } = require('pg');
 const fs = require('fs');
+const dotenv = require('dotenv');
 
 const pool = new Pool({
-  connectionString: "postgres://shannonhogan@127.0.0.1:5432/petspotter"
+  connectionString: process.env.DATABASE_URL
 });
 
 pool.on('connect', () => {
@@ -16,7 +17,7 @@ const readFileHelper = (fileName) => {
 
 // Returns a list of all the tables to create, in a specific order so that
 // there are no foreign key constraint errors
-const createScriptList = () = {
+const createScriptList = () => {
   const createAddressPostalCodeText = readFileHelper(create_address_postal_code);
   const createAddress = readFileHelper(create_address);
   const createAnimalPickup = readFileHelper(create_animal_pickup);
