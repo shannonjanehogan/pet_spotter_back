@@ -8,29 +8,23 @@
 
 Create a `.env` file for your local database information with the format:
 
-DATABASE_URL=postgres://user@host:port/databasename
+`DATABASE_URL=postgres://user@host:port/databasename`
 
 ###### Creating tables in the database:
 
-Run
-
-`node ./database/index createTables`
+Run `node ./database/index createTables`
 
 ###### Dropping tables in the database:
 
-Run
-
-`node ./database/index dropTables`
+Run `node ./database/index dropTables`
 
 ###### Creating seed files
 
 Should be done under `./database/seeds`
 
-_SCRIPT TO CREATE SEEDS IN PROGRESS, WILL EVENTUALLY LOOK LIKE_**
+_SCRIPT TO CREATE SEEDS IN PROGRESS, WILL EVENTUALLY LOOK LIKE: _**
 
-Run
-
-`node ./database/index createSeeds`
+Run `node ./database/index createSeeds`
 
 ###### Creating query files
 
