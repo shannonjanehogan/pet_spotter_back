@@ -1,6 +1,5 @@
 CREATE TABLE PotentialOwner (
-  CPhone char(11),
+  CPhone char(11) PRIMARY KEY,
   PetsOwned int,
-  PRIMARY KEY (CPhone),
   FOREIGN KEY (CPhone) references Client
 );

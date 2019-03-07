@@ -38,16 +38,16 @@ const createScriptList = () => {
     createAddressPostalCodeText,
     createAddressText,
     createAnimalPickupText,
-    createShelterText,
+    createShelterText, // WORKS UNTIL HERE TODO: FIX this SQL query
     createClientText,
     createDonorText,
     createDonationText,
     createNameToCreditText,
     createPotentialOwnerText,
-    createReviewText,
     createAnimalText,
     createApplicationApprovedText,
-    createApplicationText
+    createApplicationText,
+    createReviewText
   ];
 }
 
