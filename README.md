@@ -9,3 +9,9 @@
 Create a `.env` file for your local database information with the format:
 
 DATABASE_URL=postgres://user@host:port/databasename
+
+###### Creating tables in the database:
+
+Run
+
+`node ./database/index createTables`

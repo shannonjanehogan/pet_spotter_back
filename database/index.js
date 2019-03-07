@@ -18,36 +18,36 @@ const readFileHelper = (fileName) => {
 // Returns a list of all the tables to create, in a specific order so that
 // there are no foreign key constraint errors
 const createScriptList = () => {
-  const createAddressPostalCodeText = readFileHelper(create_address_postal_code);
-  const createAddress = readFileHelper(create_address);
-  const createAnimalPickup = readFileHelper(create_animal_pickup);
-  const createAnimal = readFileHelper(create_animal);
-  const createApplicationApproved = readFileHelper(create_application_approved);
-  const createApplication = readFileHelper(create_application);
-  const createBreedText = readFileHelper(create_breed);
-  const createClientText = readFileHelper(create_client);
-  const createDonationText = readFileHelper(create_donation);
-  const createDonorText = readFileHelper(create_donor);
-  const createNameToCredit = readFileHelper(create_name_to_credit);
-  const createPotentialOwner = readFileHelper(create_potential_owner);
-  const createReview = readFileHelper(create_review);
-  const createShelter = readFileHelper(create_shelter);
+  const createAddressPostalCodeText = readFileHelper('create_address_postal_code');
+  const createAddressText = readFileHelper('create_address');
+  const createAnimalPickupText = readFileHelper('create_animal_pickup');
+  const createAnimalText = readFileHelper('create_animal');
+  const createApplicationApprovedText = readFileHelper('create_application_approved');
+  const createApplicationText = readFileHelper('create_application');
+  const createBreedText = readFileHelper('create_breed');
+  const createClientText = readFileHelper('create_client');
+  const createDonationText = readFileHelper('create_donation');
+  const createDonorText = readFileHelper('create_donor');
+  const createNameToCreditText = readFileHelper('create_name_to_credit');
+  const createPotentialOwnerText = readFileHelper('create_potential_owner');
+  const createReviewText = readFileHelper('create_review');
+  const createShelterText = readFileHelper('create_shelter');
 
   return [
     createBreedText,
     createAddressPostalCodeText,
-    createAddress,
-    createAnimalPickup,
-    createShelter,
-    createClient,
+    createAddressText,
+    createAnimalPickupText,
+    createShelterText,
+    createClientText,
     createDonorText,
     createDonationText,
-    createNameToCredit,
-    createPotentialOwner,
-    createReview,
-    createAnimal,
-    createApplicationApproved,
-    createApplication
+    createNameToCreditText,
+    createPotentialOwnerText,
+    createReviewText,
+    createAnimalText,
+    createApplicationApprovedText,
+    createApplicationText
   ];
 }
 
