@@ -73,7 +73,7 @@ const createTables = () => {
  * Drop Tables
  */
 const dropTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS Animal';
+  const queryText = readFileHelper('drop_tables');
   pool.query(queryText)
     .then((res) => {
       console.log(res);
