@@ -1,9 +1,9 @@
 CREATE TABLE Application (
- 	AppNo: int,
-  DateSubmitted: date,
-  DateApproved: date,
-  CPhone: char(11)               NOT NULL,
-  LicenseNo: int                 NOT NULL,
+ 	AppNo int,
+  DateSubmitted date,
+  DateApproved date,
+  CPhone char(11)               NOT NULL,
+  LicenseNo int                 NOT NULL,
   PRIMARY KEY (AppNo),
   FOREIGN KEY (CPhone) references PotentialOwner
   ON DELETE NO ACTION

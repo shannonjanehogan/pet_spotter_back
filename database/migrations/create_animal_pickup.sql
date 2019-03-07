@@ -1,5 +1,5 @@
 CREATE TABLE AnimalPickup (
-  PickupTime: timestamp,
-  PickupDate: date,
+  PickupTime timestamp,
+  PickupDate date,
   PRIMARY KEY (PickupTime)
 );

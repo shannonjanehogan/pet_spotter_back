@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 const fs = require('fs');
-const dotenv = require('dotenv');
+require('dotenv').config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
@@ -56,7 +56,8 @@ const createScriptList = () => {
  */
 const createTables = () => {
   const scriptList = createScriptList();
-  for (script in scriptList) {
+  for (let i = 0; i < scriptList.length; i++) {
+    let script = scriptList[i];
     pool.query(script)
       .then((res) => {
         console.log(res);
