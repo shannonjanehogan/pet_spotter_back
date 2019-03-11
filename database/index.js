@@ -10,56 +10,28 @@ pool.on('connect', () => {
   console.log('connected to the db');
 });
 
-// Returns result of reading the sql file to a string
-const readFileHelper = (fileName) => {
-  return fs.readFileSync(`./database/migrations/${fileName}.sql`).toString();
+/**
+Database Access Functions for the Command Line
+*/
+
+async function createTables() {
+  const createTablesScript = createTablesScriptString();
+  runQuery(createTablesScript);
 }
 
-// Returns a string of all the tables to create, in a specific order so that
-// there are no foreign key constraint errors
-const createScriptString = () => {
-  const createAddressPostalCodeText = readFileHelper('create_address_postal_code');
-  const createAddressText = readFileHelper('create_address');
-  const createAnimalPickupText = readFileHelper('create_animal_pickup');
-  const createAnimalText = readFileHelper('create_animal');
-  const createApplicationApprovedText = readFileHelper('create_application_approved');
-  const createApplicationText = readFileHelper('create_application');
-  const createBreedText = readFileHelper('create_breed');
-  const createClientText = readFileHelper('create_client');
-  const createDonationText = readFileHelper('create_donation');
-  const createDonorText = readFileHelper('create_donor');
-  const createNameToCreditText = readFileHelper('create_name_to_credit');
-  const createPotentialOwnerText = readFileHelper('create_potential_owner');
-  const createReviewText = readFileHelper('create_review');
-  const createShelterText = readFileHelper('create_shelter');
+async function createSeeds() {
+  const seedsScript = createSeedsScriptString();
+  runQuery(seedsScript);
+}
 
-  let scripts = "";
-  scripts += createAddressPostalCodeText;
-  scripts += createAddressText;
-  scripts += createBreedText;
-  scripts += createShelterText,
-  scripts += createClientText,
-  scripts += createDonorText,
-  scripts += createDonationText,
-  scripts += createNameToCreditText,
-  scripts += createPotentialOwnerText,
-  scripts += createAnimalPickupText,
-  scripts += createAnimalText,
-  scripts += createApplicationApprovedText,
-  scripts += createApplicationText,
-  scripts += createReviewText
-
-  return scripts;
+const dropTables = () => {
+  const dropTablesScript = readFileHelper('drop_tables', 'migrations');
+  runQuery(dropTablesScript);
 }
 
 /**
- * Create Tables
- */
- async function createTables() {
-     const script = createScriptString();
-     runQuery(script);
- }
-
+Helper Functions
+*/
 const runQuery = (queryScript) => {
    pool.query(queryScript)
      .then((res) => {
@@ -72,21 +44,55 @@ const runQuery = (queryScript) => {
      });
  }
 
-/**
- * Drop Tables
- */
-const dropTables = () => {
-  const queryText = readFileHelper('drop_tables');
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-}
+ // Returns result of reading the sql file to a string
+ const readFileHelper = (fileName, folderName) => {
+   return fs.readFileSync(`./database/${folderName}/${fileName}.sql`).toString();
+ }
+
+ // Returns a string of all the tables to create, in a specific order so that
+ // there are no foreign key constraint errors
+ const createTablesScriptString = () => {
+   let scripts = "";
+
+   scripts += readFileHelper('create_address_postal_code', 'migrations');
+   scripts += readFileHelper('create_address', 'migrations');
+   scripts += readFileHelper('create_breed', 'migrations');
+   scripts += readFileHelper('create_shelter', 'migrations');
+   scripts += readFileHelper('create_client', 'migrations');
+   scripts += readFileHelper('create_donor', 'migrations');
+   scripts += readFileHelper('create_donation', 'migrations');
+   scripts += readFileHelper('create_name_to_credit', 'migrations');
+   scripts += readFileHelper('create_potential_owner', 'migrations');
+   scripts += readFileHelper('create_animal_pickup', 'migrations');
+   scripts += readFileHelper('create_animal', 'migrations');
+   scripts += readFileHelper('create_application_approved', 'migrations');
+   scripts += readFileHelper('create_application', 'migrations');
+   scripts += readFileHelper('create_review', 'migrations');
+
+   return scripts;
+ }
+
+ // Returns a string representation of the amalgamated sql scripts to insert seed data
+ const createSeedsScriptString = () => {
+   let scripts = "";
+
+   scripts += readFileHelper('insert_address_postal_code', 'seeds');
+   scripts += readFileHelper('insert_address', 'seeds');
+   scripts += readFileHelper('insert_breed', 'seeds');
+   scripts += readFileHelper('insert_shelter', 'seeds');
+   scripts += readFileHelper('insert_client', 'seeds');
+   scripts += readFileHelper('insert_donor', 'seeds');
+   scripts += readFileHelper('insert_donation', 'seeds');
+   scripts += readFileHelper('insert_name_to_credit', 'seeds');
+   scripts += readFileHelper('insert_potential_owner', 'seeds');
+   scripts += readFileHelper('insert_animal_pickup', 'seeds');
+   scripts += readFileHelper('insert_animal', 'seeds');
+   scripts += readFileHelper('insert_application_approved', 'seeds');
+   scripts += readFileHelper('insert_application', 'seeds');
+   scripts += readFileHelper('insert_review', 'seeds');
+
+   return scripts;
+ }
 
 pool.on('remove', () => {
   console.log('client removed');
@@ -95,13 +101,11 @@ pool.on('remove', () => {
 
 module.exports = {
   createTables,
-  dropTables
+  dropTables,
+  createSeeds
 };
 
 require('make-runnable');
-
-
-
 
 // // Database connection parameters:
 // const config = {

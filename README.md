@@ -34,8 +34,6 @@ Run `node ./database/index dropTables`
 
 Should be done under `./database/seeds`
 
-*SCRIPT TO CREATE SEEDS IN PROGRESS, WILL EVENTUALLY LOOK LIKE:*
-
 Run `node ./database/index createSeeds`
 
 ###### Creating query files
