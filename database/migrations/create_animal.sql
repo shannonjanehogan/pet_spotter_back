@@ -1,5 +1,5 @@
 CREATE TABLE Animal (
-  LicenseNo int,
+  LicenseNo int PRIMARY KEY,
   AName char(30),
   Age int,
   Weight real,
@@ -8,7 +8,6 @@ CREATE TABLE Animal (
   CPhone char(11),
   PickupTime timestamp,
   BName char(30)                 NOT NULL,
-  PRIMARY KEY (LicenseNo),
   FOREIGN KEY (CPhone) references Client,
   FOREIGN KEY (SPhone) references Shelter
   ON DELETE NO ACTION
@@ -16,5 +15,5 @@ CREATE TABLE Animal (
   FOREIGN KEY (PickupTime) references AnimalPickup,
   FOREIGN KEY (BName) references Breed
   ON DELETE NO ACTION
-  ON UPDATE CASCADE,
+  ON UPDATE CASCADE
 );
