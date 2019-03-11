@@ -1,3 +1,5 @@
+![top-img](./top-img.PNG "Top Image")
+
 # Pet Spotter Back End
 
 ##### Made for University of British Columbia's Computer Science 304 Class (Relational Databases)
