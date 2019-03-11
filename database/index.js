@@ -15,9 +15,9 @@ const readFileHelper = (fileName) => {
   return fs.readFileSync(`./database/migrations/${fileName}.sql`).toString();
 }
 
-// Returns a list of all the tables to create, in a specific order so that
+// Returns a string of all the tables to create, in a specific order so that
 // there are no foreign key constraint errors
-const createScriptList = () => {
+const createScriptString = () => {
   const createAddressPostalCodeText = readFileHelper('create_address_postal_code');
   const createAddressText = readFileHelper('create_address');
   const createAnimalPickupText = readFileHelper('create_animal_pickup');
@@ -33,42 +33,44 @@ const createScriptList = () => {
   const createReviewText = readFileHelper('create_review');
   const createShelterText = readFileHelper('create_shelter');
 
-  return [
-    createBreedText,
-    createAddressPostalCodeText,
-    createAddressText,
-    createAnimalPickupText,
-    createShelterText, // WORKS UNTIL HERE TODO: FIX this SQL query
-    createClientText,
-    createDonorText,
-    createDonationText,
-    createNameToCreditText,
-    createPotentialOwnerText,
-    createAnimalText,
-    createApplicationApprovedText,
-    createApplicationText,
-    createReviewText
-  ];
+  let scripts = "";
+  scripts += createAddressPostalCodeText;
+  scripts += createAddressText;
+  scripts += createBreedText;
+  scripts += createShelterText,
+  scripts += createClientText,
+  scripts += createDonorText,
+  scripts += createDonationText,
+  scripts += createNameToCreditText,
+  scripts += createPotentialOwnerText,
+  scripts += createAnimalPickupText,
+  scripts += createAnimalText,
+  scripts += createApplicationApprovedText,
+  scripts += createApplicationText,
+  scripts += createReviewText
+
+  return scripts;
 }
 
 /**
  * Create Tables
  */
-const createTables = () => {
-  const scriptList = createScriptList();
-  for (let i = 0; i < scriptList.length; i++) {
-    let script = scriptList[i];
-    pool.query(script)
-      .then((res) => {
-        console.log(res);
-        pool.end();
-      })
-      .catch((err) => {
-        console.log(err);
-        pool.end();
-      });
-  }
-}
+ async function createTables() {
+     const script = createScriptString();
+     runQuery(script);
+ }
+
+const runQuery = (queryScript) => {
+   pool.query(queryScript)
+     .then((res) => {
+       console.log(res);
+       pool.end();
+     })
+     .catch((err) => {
+       console.log(err);
+       pool.end();
+     });
+ }
 
 /**
  * Drop Tables
