@@ -29,17 +29,27 @@ const dropTables = () => {
   runQuery(dropTablesScript);
 }
 
+async function selectQuery(queryFile) {
+  const dropTablesScript = readFileHelper(queryFile, 'queries');
+  const result = await runQuery(dropTablesScript);
+  console.log(result.rows);
+  return result.rows;
+}
+
 /**
 Helper Functions
 */
+
 const runQuery = (queryScript) => {
-   pool.query(queryScript)
+   return pool.query(queryScript)
      .then((res) => {
        console.log(res);
+       return res;
        pool.end();
      })
      .catch((err) => {
        console.log(err);
+       return err;
        pool.end();
      });
  }
@@ -102,6 +112,7 @@ pool.on('remove', () => {
 module.exports = {
   createTables,
   dropTables,
+  selectQuery,
   createSeeds
 };
 
