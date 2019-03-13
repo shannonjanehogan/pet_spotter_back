@@ -1,2 +1,2 @@
 DELETE FROM Donation
-WHERE TransactionID = {VarFromFrontEnd};
+WHERE TransactionID = VarFromFrontEnd;
