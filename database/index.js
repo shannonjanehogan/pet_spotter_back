@@ -40,6 +40,20 @@ async function selectQuery(queryFile) {
 Helper Functions
 */
 
+const runQueryWithParams = (queryScript, params) => {
+   return pool.query(queryScript, params)
+     .then((res) => {
+       console.log(res);
+       return res;
+       pool.end();
+     })
+     .catch((err) => {
+       console.log(err);
+       return err;
+       pool.end();
+     });
+ }
+
 const runQuery = (queryScript) => {
    return pool.query(queryScript)
      .then((res) => {
@@ -112,7 +126,9 @@ module.exports = {
   dropTables,
   selectQuery,
   createSeeds,
-  runQuery
+  runQuery,
+  runQueryWithParams,
+  readFileHelper
 };
 
 require('make-runnable');

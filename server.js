@@ -29,15 +29,15 @@ app.get('/shelters/:id/animals', async (req, res) => {
 
 // Create new donation
 app.post('/donations', async (req, res) => {
+  const params = [req.body.amount];
   try {
-    const result = await database.runQuery(`INSERT INTO Donation
-  (TransactionID, Amount, Date, CPhone, SPhone) VALUES (
-      '2017-0002',
-      ${req.body.amount},
+    const result = await database.testQuery(`INSERT INTO Donation
+  (Amount, Date, CPhone, SPhone) VALUES (
+      $1,
       '2018-01-22',
       (SELECT CPhone FROM Client WHERE CPhone = '7884321987'),
       (SELECT SPhone FROM Shelter WHERE SPhone = '6048324820')
-    );`);
+    );`, params);
     res.send(result);
   } catch {
     res.sendStatus(500);
@@ -45,32 +45,74 @@ app.post('/donations', async (req, res) => {
 });
 
 app.delete('/donations/:id', async (req, res) => {
-  res.sendStatus(200);
+  const params = [req.params.id];
+  const sql = database.readFileHelper('delete_donation', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 // Update
 app.put('/client/:id', async (req, res) => {
-  res.sendStatus(200);
+  const params = [req.params.id];
+  const sql = database.readFileHelper('update_client', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 // Join
 app.get('/animalpickups', async (req, res) => {
-  res.sendStatus(200);
+  const params = [];
+  const sql = database.readFileHelper('join_animal_pickups', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 // Aggregation
 app.get('/donors/:id/taxreceipt', async (req, res) => {
-  res.sendStatus(200);
+  const params = [req.params.id];
+  const sql = database.readFileHelper('aggregation_tax_receipt', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 // Nested Aggregation with Group By
 app.get('/donations', async (req, res) => {
-  res.sendStatus(200);
+  const params = [];
+  const sql = database.readFileHelper('aggregation_donations', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 // Division
 app.get('/donors', async (req, res) => {
-  res.sendStatus(200);
+  const params = [];
+  const sql = database.readFileHelper('division_donors', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 
