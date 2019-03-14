@@ -1,5 +1,4 @@
-INSERT INTO Animal (LicenseNo, AName, Age, Weight, Gender, SPhone, CPhone, PickupTime, BName) VALUES (
-  1,
+INSERT INTO Animal (AName, Age, Weight, Gender, SPhone, CPhone, PickupTime, BName) VALUES (
   'Whiskey',
   3,
   30.0,

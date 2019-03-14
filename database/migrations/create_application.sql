@@ -1,5 +1,5 @@
 CREATE TABLE Application (
- 	AppNo int,
+ 	AppNo SERIAL,
   DateSubmitted date,
   DateApproved date,
   CPhone char(11)               NOT NULL,
@@ -10,6 +10,5 @@ CREATE TABLE Application (
   ON UPDATE CASCADE,
   FOREIGN KEY (LicenseNo) references Animal
   ON DELETE NO ACTION
-  ON UPDATE CASCADE,
-  FOREIGN KEY (DateApproved) references ApplicationApproved
+  ON UPDATE CASCADE
 );

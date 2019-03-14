@@ -1,5 +1,5 @@
 CREATE TABLE Animal (
-  LicenseNo int PRIMARY KEY,
+  LicenseNo SERIAL PRIMARY KEY,
   AName char(30),
   Age int,
   Weight real,

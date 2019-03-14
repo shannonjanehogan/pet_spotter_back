@@ -1,5 +1,4 @@
-INSERT INTO Donation (TransactionID, Amount, Date, CPhone, SPhone) VALUES (
-  '2018-0001',
+INSERT INTO Donation (Amount, Date, CPhone, SPhone) VALUES (
   120.20,
   '2019-01-22',
   (SELECT CPhone FROM Client WHERE CPhone = '7884321987'),

@@ -1,5 +1,5 @@
 CREATE TABLE Donation (
-  TransactionID char(30) PRIMARY KEY,
+  TransactionID SERIAL PRIMARY KEY,
   Amount real,
   Date date,
   SPhone char(11)               NOT NULL,
