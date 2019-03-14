@@ -27,6 +27,7 @@ app.get('/shelters/:id/animals', async (req, res) => {
   res.send(result.rows);
 });
 
+// Create new donation
 app.post('/donations', async (req, res) => {
   try {
     const result = await database.runQuery(`INSERT INTO Donation
@@ -43,9 +44,34 @@ app.post('/donations', async (req, res) => {
   }
 });
 
+app.delete('/donations/:id', async (req, res) => {
+  res.sendStatus(200);
+});
+
+// Update
 app.put('/client/:id', async (req, res) => {
   res.sendStatus(200);
-}
+});
+
+// Join
+app.get('/animalpickups', async (req, res) => {
+  res.sendStatus(200);
+});
+
+// Aggregation
+app.get('/donors/:id/taxreceipt', async (req, res) => {
+  res.sendStatus(200);
+});
+
+// Nested Aggregation with Group By
+app.get('/donations', async (req, res) => {
+  res.sendStatus(200);
+});
+
+// Division
+app.get('/donors', async (req, res) => {
+  res.sendStatus(200);
+});
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
