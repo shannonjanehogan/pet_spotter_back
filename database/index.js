@@ -75,7 +75,6 @@ const runQuery = (queryScript) => {
    scripts += readFileHelper('create_potential_owner', 'migrations');
    scripts += readFileHelper('create_animal_pickup', 'migrations');
    scripts += readFileHelper('create_animal', 'migrations');
-   scripts += readFileHelper('create_application_approved', 'migrations');
    scripts += readFileHelper('create_application', 'migrations');
    scripts += readFileHelper('create_review', 'migrations');
 
@@ -97,23 +96,23 @@ const runQuery = (queryScript) => {
    scripts += readFileHelper('insert_potential_owner', 'seeds');
    scripts += readFileHelper('insert_animal_pickup', 'seeds');
    scripts += readFileHelper('insert_animal', 'seeds');
-   scripts += readFileHelper('insert_application_approved', 'seeds');
    scripts += readFileHelper('insert_application', 'seeds');
    scripts += readFileHelper('insert_review', 'seeds');
 
    return scripts;
  }
 
-pool.on('remove', () => {
-  console.log('client removed');
-  process.exit(0);
-});
+// pool.on('remove', () => {
+//   console.log('client removed');
+//   process.exit(0);
+// });
 
 module.exports = {
   createTables,
   dropTables,
   selectQuery,
-  createSeeds
+  createSeeds,
+  runQuery
 };
 
 require('make-runnable');
