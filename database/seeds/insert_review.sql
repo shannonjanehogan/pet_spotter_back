@@ -1,8 +1,4 @@
 INSERT INTO Review (AppNo, Sphone) VALUES (
-  (SELECT AppNo FROM Application WHERE CPhone = '7884321987'),
-  (SELECT SPhone FROM Shelter WHERE SPhone = '4031257869')
-);
-INSERT INTO Review (AppNo, Sphone) VALUES (
   (SELECT AppNo FROM Application WHERE AppNo = 2),
   (SELECT SPhone FROM Shelter WHERE SPhone = '6045551111')
 );
@@ -23,6 +19,6 @@ INSERT INTO Review (AppNo, Sphone) VALUES (
   (SELECT SPhone FROM Shelter WHERE SPhone = '6045551111')
 );
 INSERT INTO Review (AppNo, Sphone) VALUES (
-  (SELECT AppNo FROM Application WHERE AppNo = 7),
+  (SELECT AppNo FROM Application WHERE AppNo = 1),
   (SELECT SPhone FROM Shelter WHERE SPhone = '6045553333')
 );
