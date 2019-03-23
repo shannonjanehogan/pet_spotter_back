@@ -43,11 +43,13 @@ Helper Functions
 const runQuery = (queryScript) => {
    return pool.query(queryScript)
      .then((res) => {
+       console.log("res");
        console.log(res);
        return res;
        pool.end();
      })
      .catch((err) => {
+       console.log("res");
        console.log(err);
        return err;
        pool.end();
@@ -66,6 +68,7 @@ const runQuery = (queryScript) => {
 
    scripts += readFileHelper('create_address_postal_code', 'migrations');
    scripts += readFileHelper('create_address', 'migrations');
+
    scripts += readFileHelper('create_breed', 'migrations');
    scripts += readFileHelper('create_shelter', 'migrations');
    scripts += readFileHelper('create_client', 'migrations');
@@ -73,8 +76,10 @@ const runQuery = (queryScript) => {
    scripts += readFileHelper('create_donation', 'migrations');
    scripts += readFileHelper('create_name_to_credit', 'migrations');
    scripts += readFileHelper('create_potential_owner', 'migrations');
+
    scripts += readFileHelper('create_animal_pickup', 'migrations');
    scripts += readFileHelper('create_animal', 'migrations');
+
    scripts += readFileHelper('create_application_approved', 'migrations');
    scripts += readFileHelper('create_application', 'migrations');
    scripts += readFileHelper('create_review', 'migrations');
@@ -86,20 +91,23 @@ const runQuery = (queryScript) => {
  const createSeedsScriptString = () => {
    let scripts = "";
 
-   scripts += readFileHelper('insert_address_postal_code', 'seeds');
-   scripts += readFileHelper('insert_address', 'seeds');
-   scripts += readFileHelper('insert_breed', 'seeds');
-   scripts += readFileHelper('insert_shelter', 'seeds');
-   scripts += readFileHelper('insert_client', 'seeds');
+//    scripts += readFileHelper('insert_address_postal_code', 'seeds');
+//    scripts += readFileHelper('insert_address', 'seeds');
+
+//    scripts += readFileHelper('insert_breed', 'seeds');
+//    scripts += readFileHelper('insert_shelter', 'seeds');
+//    scripts += readFileHelper('insert_client', 'seeds');
    scripts += readFileHelper('insert_donor', 'seeds');
-   scripts += readFileHelper('insert_donation', 'seeds');
-   scripts += readFileHelper('insert_name_to_credit', 'seeds');
-   scripts += readFileHelper('insert_potential_owner', 'seeds');
-   scripts += readFileHelper('insert_animal_pickup', 'seeds');
-   scripts += readFileHelper('insert_animal', 'seeds');
-   scripts += readFileHelper('insert_application_approved', 'seeds');
-   scripts += readFileHelper('insert_application', 'seeds');
-   scripts += readFileHelper('insert_review', 'seeds');
+//    scripts += readFileHelper('insert_donation', 'seeds');
+//    scripts += readFileHelper('insert_name_to_credit', 'seeds');
+//    scripts += readFileHelper('insert_potential_owner', 'seeds');
+   
+//    scripts += readFileHelper('insert_animal_pickup', 'seeds');
+//    scripts += readFileHelper('insert_animal', 'seeds');
+
+//    scripts += readFileHelper('insert_application_approved', 'seeds');
+//    scripts += readFileHelper('insert_application', 'seeds');
+//    scripts += readFileHelper('insert_review', 'seeds');
 
    return scripts;
  }
