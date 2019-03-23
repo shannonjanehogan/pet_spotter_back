@@ -3,3 +3,28 @@ INSERT INTO NameToCredit (Name, Description, TransactionID) VALUES (
   'In Memory of the best dog ever',
   (SELECT TransactionID FROM Donation WHERE CPhone = '7884321987')
 );
+INSERT INTO NameToCredit (Name, Description, TransactionID) VALUES (
+  'Anonymous',
+  NULL,
+  (SELECT TransactionID FROM Donation WHERE TransactionID = '2018-0001')
+);
+INSERT INTO NameToCredit (Name, Description, TransactionID) VALUES (
+  'Simon Paul',
+  'Thanks for all the work you do!',
+  (SELECT TransactionID FROM Donation WHERE TransactionID = '2019-0002')
+);
+INSERT INTO NameToCredit (Name, Description, TransactionID) VALUES (
+  'Carmen Russ',
+  'This is for my mom!',
+  (SELECT TransactionID FROM Donation WHERE TransactionID = '2019-0001')
+);
+INSERT INTO NameToCredit (Name, Description, TransactionID) VALUES (
+  'Anonymous',
+  'Sending love from Ontario!',
+  (SELECT TransactionID FROM Donation WHERE TransactionID = '2018-0003')
+);
+INSERT INTO NameToCredit (Name, Description, TransactionID) VALUES (
+  'Charlie',
+  'In Memory of the best dog ever',
+  (SELECT TransactionID FROM Donation WHERE TransactionID = '2018-0002')
+);
