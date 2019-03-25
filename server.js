@@ -1,5 +1,5 @@
 const express = require('express');
-const port = 3000;
+const port = 8080;
 const database = require('./database/index.js');
 var bodyParser = require('body-parser')
 const app = express()
@@ -31,6 +31,7 @@ app.get('/shelters/:id/animals', async (req, res) => {
 app.post('/donations', async (req, res) => {
   const params = [req.body.amount];
   try {
+    // INSERT DONATION
     const result = await database.testQuery(`INSERT INTO Donation
   (Amount, Date, CPhone, SPhone) VALUES (
       $1,
@@ -38,6 +39,8 @@ app.post('/donations', async (req, res) => {
       (SELECT CPhone FROM Client WHERE CPhone = '7884321987'),
       (SELECT SPhone FROM Shelter WHERE SPhone = '6048324820')
     );`, params);
+    // GET DONATION ID
+    // INSERT INTO NAME TO CREDIT TABLE
     res.send(result);
   } catch {
     res.sendStatus(500);

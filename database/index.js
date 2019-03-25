@@ -1,36 +1,35 @@
-const { Pool } = require('pg');
-const fs = require('fs');
-require('dotenv').config();
+const { Pool } = require("pg");
+const fs = require("fs");
+require("dotenv").config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-pool.on('connect', () => {
-  console.log('connected to the db');
+pool.on("connect", () => {
+  console.log("connected to the db");
 });
 
 /**
 Database Access Functions for the Command Line
 */
-
-async function createTables() {
+function createTables() {
   const createTablesScript = createTablesScriptString();
   runQuery(createTablesScript);
 }
 
-async function createSeeds() {
+function createSeeds() {
   const seedsScript = createSeedsScriptString();
   runQuery(seedsScript);
 }
 
 const dropTables = () => {
-  const dropTablesScript = readFileHelper('drop_tables', 'migrations');
+  const dropTablesScript = readFileHelper("drop_tables", "migrations");
   runQuery(dropTablesScript);
-}
+};
 
 async function selectQuery(queryFile) {
-  const dropTablesScript = readFileHelper(queryFile, 'queries');
+  const dropTablesScript = readFileHelper(queryFile, "queries");
   const result = await runQuery(dropTablesScript);
   console.log(result.rows);
   return result.rows;
@@ -39,7 +38,6 @@ async function selectQuery(queryFile) {
 /**
 Helper Functions
 */
-
 const runQueryWithParams = (queryScript, params) => {
    return pool.query(queryScript, params)
      .then((res) => {
@@ -131,7 +129,7 @@ module.exports = {
   readFileHelper
 };
 
-require('make-runnable');
+require("make-runnable");
 
 // // Database connection parameters:
 // const config = {

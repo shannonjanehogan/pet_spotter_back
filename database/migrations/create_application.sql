@@ -1,7 +1,6 @@
 CREATE TABLE Application (
- 	AppNo SERIAL,
+  AppNo SERIAL,
   DateSubmitted date,
-  DateApproved date,
   CPhone char(11)               NOT NULL,
   LicenseNo int                 NOT NULL,
   PRIMARY KEY (AppNo),
