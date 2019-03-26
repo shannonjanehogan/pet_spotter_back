@@ -20,11 +20,14 @@ app.get('/animals', async (req, res) => {
 
 // View All Animals by Shelter
 app.get('/shelters/:id/animals', async (req, res) => {
-  const result = await database.runQuery(
-    `SELECT * FROM Animal INNER JOIN Shelter on Shelter.Sphone = Animal.Sphone
-    WHERE Shelter.Sphone = 6048324820;`
-  );
-  res.send(result.rows);
+  const params = [req.params.id];
+  const sql = database.readFileHelper('select_shelter_animals', 'queries');
+  try {
+    const result = await database.runQueryWithParams(sql, params);
+    res.send(result);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 // Create new donation
