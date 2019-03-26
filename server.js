@@ -57,23 +57,30 @@ app.delete('/donations/:id', async (req, res) => {
 app.put('/client/:id', async (req, res) => {
   const params = [
     req.body.name,
-    req.body.housesNo,
+    req.body.houseNo,
     req.body.street,
     req.body.postalCode,
     req.body.email,
     req.params.id
   ];
-  // TODO address postal code needs to be inserted
-  // TODO then Address needs to be inserted
-  // TODO then Client can be updated
+  const postalParams = [req.body.city, req.body.province, req.body.postalCode];
+  const addressParams = [req.body.houseNo, req.body.street, req.body.postalCode];
   const sql = database.readFileHelper('update_client', 'queries');
+  const postSQL = database.readFileHelper('insert_address_postal_code', 'queries');
+  const addressSQL = database.readFileHelper('insert_address', 'queries');
+  await genericQueryAttempter(postSQL, postalParams);
+  await genericQueryAttempter(addressSQL, addressParams);
+  const result = await genericQueryAttempter(sql, params);
+  res.send(result);
+});
+
+async function genericQueryAttempter(sql, params) {
   try {
-    const result = await database.runQueryWithParams(sql, params);
-    res.send(result);
+    return await database.runQueryWithParams(sql, params);
   } catch (err) {
     res.sendStatus(500);
   }
-});
+}
 
 // Join
 app.get('/animalpickups', async (req, res) => {
