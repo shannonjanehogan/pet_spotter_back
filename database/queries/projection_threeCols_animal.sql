@@ -1,1 +1,0 @@
-SELECT ColX, ColY, ColZ FROM Animal;

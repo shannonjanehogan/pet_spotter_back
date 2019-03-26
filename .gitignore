@@ -1,4 +1,4 @@
-Skip to content
+﻿Skip to content
 
 Search or jump to…
 
@@ -15,6 +15,9 @@ ac2e28a  on Dec 18, 2018
 @shiftkey shiftkey Merge pull request #2908 from lmedson/env_test_ignore
 @stuartpb @shiftkey @TennyZhuang @venatoria @ro31337 @melonmanchan @gouthamve @jucrouzet @cheddar @arcresu @kesoji @tejashah88 @sroberts @segayuu @rgbkrk @rsolomo @peat @noinkling @MikeRalphson @lmedson @shtr0m @kerimdzhanov @joreyaesh @jenrik @jefrydco @izuzak
 81 lines (57 sloc)  1.12 KB
+
+# IDEA
+.idea
 
 # Logs
 logs

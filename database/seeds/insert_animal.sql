@@ -1,4 +1,3 @@
-
 INSERT INTO Animal VALUES (2205, 'Snoopy', 5, 30.6, 'M', (SELECT SPhone FROM Shelter WHERE SPhone = '6045550000'), NULL, NULL, (SELECT BName FROM Breed WHERE BName = 'Golden Retriever'));
 INSERT INTO Animal VALUES (6485, 'Toby', 2, 20.5, 'M', (SELECT SPhone FROM Shelter WHERE SPhone = '6045550000'), NULL, NULL, (SELECT BName FROM Breed WHERE BName = 'Cocker Spaniel'));
 INSERT INTO Animal VALUES (2056, 'Luna', 4, 25.6, 'F', (SELECT SPhone FROM Shelter WHERE SPhone = '6045551111'), (SELECT CPhone FROM Client WHERE CPhone = '7785550000'), (SELECT PickupTime FROM AnimalPickup WHERE PickupTime = '2019-04-01 14:00:00'), (SELECT BName FROM Breed WHERE BName = 'Beagle'));

@@ -1,4 +1,4 @@
-INSERT INTO AddressPostalCode VALUES('Vancouver', 'BC', 'V6K 2G8');
+INSERT INTO AddressPostalCode VALUES ('Vancouver', 'BC', 'V6K 2G8');
 INSERT INTO AddressPostalCode VALUES ('Richmond', 'BC', 'V7A 1L9');
 INSERT INTO AddressPostalCode VALUES ('Burnaby', 'BC', 'V5B 3A6');
 INSERT INTO AddressPostalCode VALUES ('Delta', 'BC', 'V4G 1B6');

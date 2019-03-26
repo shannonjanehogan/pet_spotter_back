@@ -1,4 +1,4 @@
-SELECT CPhone FROM Donor D
+SELECT CPhone, CName, CEmail  FROM Donor D
 WHERE NOT EXISTS (
     (SELECT SPhone FROM Shelter)
     EXCEPT
