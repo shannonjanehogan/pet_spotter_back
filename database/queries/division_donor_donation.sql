@@ -1,5 +1,5 @@
-SELECT CPhone, CName, CEmail  FROM Donor D
-WHERE NOT EXISTS (
+SELECT C.CPhone, C.CName, C.CEmail  FROM Donor D, Client C
+WHERE C.CPhone = D.CPhone AND NOT EXISTS (
     (SELECT SPhone FROM Shelter)
     EXCEPT
     (
