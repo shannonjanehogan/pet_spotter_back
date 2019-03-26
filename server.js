@@ -63,7 +63,17 @@ app.delete('/donations/:id', async (req, res) => {
 
 // Update
 app.put('/client/:id', async (req, res) => {
-  const params = [req.params.id];
+  const params = [
+    req.body.name,
+    req.body.housesNo,
+    req.body.street,
+    req.body.postalCode,
+    req.body.email,
+    req.params.id
+  ];
+  // TODO address postal code needs to be inserted
+  // TODO then Address needs to be inserted
+  // TODO then Client can be updated
   const sql = database.readFileHelper('update_client', 'queries');
   try {
     const result = await database.runQueryWithParams(sql, params);
