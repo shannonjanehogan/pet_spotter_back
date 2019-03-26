@@ -1,4 +1,4 @@
-SELECT AName, Animal.PickupTime, SName, CName, PickupDate 
+SELECT AName, Animal.PickupTime, SName, CName, PickupDate
 FROM Animal, AnimalPickup, Shelter, Client
 WHERE Animal.SPhone = Shelter.Sphone
  AND Animal.CPhone = Client.CPhone

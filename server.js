@@ -75,10 +75,9 @@ app.put('/client/:id', async (req, res) => {
 
 // Join
 app.get('/animalpickups', async (req, res) => {
-  const params = [];
-  const sql = database.readFileHelper('join_animal_pickups', 'queries');
+  const sql = database.readFileHelper('join_animal_animalpickup', 'queries');
   try {
-    const result = await database.runQueryWithParams(sql, params);
+    const result = await database.runQuery(sql);
     res.send(result);
   } catch {
     res.sendStatus(500);
