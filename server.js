@@ -110,11 +110,11 @@ app.get('/donations', async (req, res) => {
 });
 
 // Division
+// TODO: is this correct? We don't need any variables from client?
 app.get('/donors', async (req, res) => {
-  const params = [];
-  const sql = database.readFileHelper('division_donors', 'queries');
+  const sql = database.readFileHelper('division_donor_donation', 'queries');
   try {
-    const result = await database.runQueryWithParams(sql, params);
+    const result = await database.runQuery(sql);
     res.send(result);
   } catch {
     res.sendStatus(500);
