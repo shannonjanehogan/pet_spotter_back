@@ -48,7 +48,7 @@ app.delete('/donations/:id', async (req, res) => {
   try {
     const result = await database.runQueryWithParams(sql, params);
     res.send(result);
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -70,7 +70,7 @@ app.put('/client/:id', async (req, res) => {
   try {
     const result = await database.runQueryWithParams(sql, params);
     res.send(result);
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -81,7 +81,7 @@ app.get('/animalpickups', async (req, res) => {
   try {
     const result = await database.runQuery(sql);
     res.send(result);
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -93,7 +93,7 @@ app.get('/donors/:id/taxreceipt', async (req, res) => {
   try {
     const result = await database.runQueryWithParams(sql, params);
     res.send(result);
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -104,7 +104,7 @@ app.get('/donations', async (req, res) => {
   try {
     const result = await database.runQuery(sql);
     res.send(result);
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -115,7 +115,7 @@ app.get('/donors', async (req, res) => {
   try {
     const result = await database.runQuery(sql);
     res.send(result);
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
