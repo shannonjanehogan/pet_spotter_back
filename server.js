@@ -100,7 +100,7 @@ app.get('/donors/:id/taxreceipt', async (req, res) => {
 
 // Nested Aggregation with Group By
 app.get('/donations', async (req, res) => {
-  const sql = database.readFileHelper('nested_aggregation_donation', 'queries');
+  const sql = database.readFileHelper('sumAmount_donation', 'queries');
   try {
     const result = await database.runQuery(sql);
     res.send(result);
