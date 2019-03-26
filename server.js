@@ -87,7 +87,6 @@ app.get('/animalpickups', async (req, res) => {
 });
 
 // Aggregation
-// TODO current year decided by client or server?
 app.get('/donors/:id/taxreceipt', async (req, res) => {
   const params = ['2018', req.params.id];
   const sql = database.readFileHelper('aggregation_donor', 'queries');
@@ -111,7 +110,6 @@ app.get('/donations', async (req, res) => {
 });
 
 // Division
-// TODO: is this correct? We don't need any variables from client?
 app.get('/donors', async (req, res) => {
   const sql = database.readFileHelper('division_donor_donation', 'queries');
   try {
