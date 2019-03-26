@@ -17,7 +17,18 @@ app.get('/shelters/:id/animals', async (req, res) => {
   try {
     const result = await database.runQueryWithParams(sql, params);
     res.send(result);
-  } catch {
+  } catch (err) {
+    res.sendStatus(500);
+  }
+});
+
+// View All Animals up for adoption
+app.get('/animals', async (req, res) => {
+  const sql = database.readFileHelper('projection_animal', 'queries');
+  try {
+    const result = await database.runQuery(sql);
+    res.send(result);
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -34,10 +45,10 @@ app.post('/donations', async (req, res) => {
       const nameToCreditSql = database.readFileHelper('insert_name_to_credit', 'queries');
       const finalResult = await database.runQueryWithParams(nameToCreditSql, nameParams);
       res.send(finalResult);
-    } catch {
+    } catch (err) {
       res.sendStatus(500);
     }
-  } catch {
+  } catch (err) {
     res.sendStatus(500);
   }
 });
@@ -107,7 +118,7 @@ app.get('/donors/:id/taxreceipt', async (req, res) => {
 
 // Nested Aggregation with Group By
 app.get('/donations', async (req, res) => {
-  const sql = database.readFileHelper('nested_aggregation_donation', 'queries');
+  const sql = database.readFileHelper('sumAmount_donation', 'queries');
   try {
     const result = await database.runQuery(sql);
     res.send(result);
