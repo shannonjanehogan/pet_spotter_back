@@ -86,9 +86,10 @@ app.get('/animalpickups', async (req, res) => {
 });
 
 // Aggregation
+// TODO current year decided by client or server?
 app.get('/donors/:id/taxreceipt', async (req, res) => {
-  const params = [req.params.id];
-  const sql = database.readFileHelper('aggregation_tax_receipt', 'queries');
+  const params = ['2018', req.params.id];
+  const sql = database.readFileHelper('aggregation_donor', 'queries');
   try {
     const result = await database.runQueryWithParams(sql, params);
     res.send(result);
