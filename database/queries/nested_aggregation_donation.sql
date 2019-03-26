@@ -8,3 +8,4 @@ WHERE SHouseNo IN (
 );
 
 -- TODO: doesn't the nested aggregation need to return a sum?
+-- TODO: also like ave??
