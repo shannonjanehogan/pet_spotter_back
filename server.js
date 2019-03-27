@@ -38,12 +38,12 @@ app.get('/animals', async (req, res) => {
 // Create new donation
 app.post('/donations', async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  const params = [req.body.amount, req.body.date, req.body.cPhone, req.body.sPhone];
+  const params = [req.body.data.amount, req.body.data.date, req.body.data.cPhone, req.body.data.sPhone];
   const sql = database.readFileHelper('insert_donation', 'queries');
   try {
     const result = await database.runQueryWithParams(sql, params);
     const transactionId = result[0].transactionid;
-    const nameParams = [req.body.name, req.body.message, transactionId,];
+    const nameParams = [req.body.data.name, req.body.data.message, transactionId,];
     try {
       const nameToCreditSql = database.readFileHelper('insert_name_to_credit', 'queries');
       const finalResult = await database.runQueryWithParams(nameToCreditSql, nameParams);
@@ -72,15 +72,15 @@ app.delete('/donations/:id', async (req, res) => {
 app.put('/client/:id', async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   const params = [
-    req.body.name,
-    req.body.houseNo,
-    req.body.street,
-    req.body.postalCode,
-    req.body.email,
+    req.body.data.name,
+    req.body.data.houseNo,
+    req.body.data.street,
+    req.body.data.postalCode,
+    req.body.data.email,
     req.params.id
   ];
-  const postalParams = [req.body.city, req.body.province, req.body.postalCode];
-  const addressParams = [req.body.houseNo, req.body.street, req.body.postalCode];
+  const postalParams = [req.body.data.city, req.body.data.province, req.body.data.postalCode];
+  const addressParams = [req.body.data.houseNo, req.body.data.street, req.body.data.postalCode];
   const sql = database.readFileHelper('update_client', 'queries');
   const postSQL = database.readFileHelper('insert_address_postal_code', 'queries');
   const addressSQL = database.readFileHelper('insert_address', 'queries');
