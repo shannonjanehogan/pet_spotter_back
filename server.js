@@ -10,9 +10,17 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+const cors = (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  next();
+};
+
+app.use(cors);
+
 // View All Animals by Shelter
 app.get('/shelters/:id/animals', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const params = [req.params.id];
   const sql = database.readFileHelper('select_shelter_animals', 'queries');
   try {
@@ -25,7 +33,6 @@ app.get('/shelters/:id/animals', async (req, res) => {
 
 // View All Animals up for adoption
 app.get('/animals', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('projection_animal', 'queries');
   try {
     const result = await database.runQuery(sql);
@@ -37,7 +44,6 @@ app.get('/animals', async (req, res) => {
 
 // Create new donation
 app.post('/donations', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const params = [req.body.data.amount, req.body.data.date, req.body.data.cPhone, req.body.data.sPhone];
   const sql = database.readFileHelper('insert_donation', 'queries');
   try {
@@ -57,7 +63,6 @@ app.post('/donations', async (req, res) => {
 });
 
 app.delete('/donations/:id', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const params = [req.params.id];
   const sql = database.readFileHelper('delete_donation', 'queries');
   try {
@@ -70,7 +75,6 @@ app.delete('/donations/:id', async (req, res) => {
 
 // Update
 app.put('/client/:id', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const params = [
     req.body.data.name,
     req.body.data.houseNo,
@@ -100,7 +104,6 @@ async function genericQueryAttempter(sql, params) {
 
 // Join
 app.get('/animalpickups', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('join_animal_animalpickup', 'queries');
   try {
     const result = await database.runQuery(sql);
@@ -112,7 +115,6 @@ app.get('/animalpickups', async (req, res) => {
 
 // Aggregation
 app.get('/donors/:id/taxreceipt', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const params = ['2018', req.params.id];
   const sql = database.readFileHelper('aggregation_donor', 'queries');
   try {
@@ -125,7 +127,6 @@ app.get('/donors/:id/taxreceipt', async (req, res) => {
 
 // Nested Aggregation with Group By
 app.get('/donations', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('sumAmount_donation', 'queries');
   try {
     const result = await database.runQuery(sql);
@@ -137,7 +138,6 @@ app.get('/donations', async (req, res) => {
 
 // Division
 app.get('/donors', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('division_donor_donation', 'queries');
   try {
     const result = await database.runQuery(sql);
