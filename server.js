@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 
 // View All Animals by Shelter
 app.get('/shelters/:id/animals', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const params = [req.params.id];
   const sql = database.readFileHelper('select_shelter_animals', 'queries');
   try {
@@ -24,6 +25,7 @@ app.get('/shelters/:id/animals', async (req, res) => {
 
 // View All Animals up for adoption
 app.get('/animals', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('projection_animal', 'queries');
   try {
     const result = await database.runQuery(sql);
@@ -35,6 +37,7 @@ app.get('/animals', async (req, res) => {
 
 // Create new donation
 app.post('/donations', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const params = [req.body.amount, req.body.date, req.body.cPhone, req.body.sPhone];
   const sql = database.readFileHelper('insert_donation', 'queries');
   try {
@@ -54,6 +57,7 @@ app.post('/donations', async (req, res) => {
 });
 
 app.delete('/donations/:id', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const params = [req.params.id];
   const sql = database.readFileHelper('delete_donation', 'queries');
   try {
@@ -66,6 +70,7 @@ app.delete('/donations/:id', async (req, res) => {
 
 // Update
 app.put('/client/:id', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const params = [
     req.body.name,
     req.body.houseNo,
@@ -95,6 +100,7 @@ async function genericQueryAttempter(sql, params) {
 
 // Join
 app.get('/animalpickups', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('join_animal_animalpickup', 'queries');
   try {
     const result = await database.runQuery(sql);
@@ -106,6 +112,7 @@ app.get('/animalpickups', async (req, res) => {
 
 // Aggregation
 app.get('/donors/:id/taxreceipt', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const params = ['2018', req.params.id];
   const sql = database.readFileHelper('aggregation_donor', 'queries');
   try {
@@ -118,6 +125,7 @@ app.get('/donors/:id/taxreceipt', async (req, res) => {
 
 // Nested Aggregation with Group By
 app.get('/donations', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('sumAmount_donation', 'queries');
   try {
     const result = await database.runQuery(sql);
@@ -129,6 +137,7 @@ app.get('/donations', async (req, res) => {
 
 // Division
 app.get('/donors', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const sql = database.readFileHelper('division_donor_donation', 'queries');
   try {
     const result = await database.runQuery(sql);
