@@ -125,7 +125,7 @@ app.get('/donors/:id/taxreceipt', async (req, res) => {
   }
 });
 
-// Nested Aggregation with Group By
+// Simple aggregation
 app.get('/donations', async (req, res) => {
   const sql = database.readFileHelper('sumAmount_donation', 'queries');
   try {
@@ -147,7 +147,7 @@ app.get('/donors', async (req, res) => {
   }
 });
 
-// Nested Aggregation
+// Nested Aggregation with Group By
 app.get('/shelters', async (req, res) => {
   const sql = database.readFileHelper('shelter_nested_aggregation', 'queries');
   try {
@@ -157,6 +157,5 @@ app.get('/shelters', async (req, res) => {
     res.sendStatus(500);
   }
 });
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
