@@ -4,5 +4,5 @@ WHERE SHouseNo IN (
   SELECT HouseNo
   FROM Address
   GROUP BY HouseNo, Street
-  HAVING Street LIKE '%Ave'
+  HAVING Street LIKE '%Ave%'
 );
