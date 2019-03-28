@@ -147,5 +147,16 @@ app.get('/donors', async (req, res) => {
   }
 });
 
+// Nested Aggregation
+app.get('/shelters', async (req, res) => {
+  const sql = database.readFileHelper('shelter_nested_aggregation', 'queries');
+  try {
+    const result = await database.runQuery(sql);
+    res.send(result);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+});
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
